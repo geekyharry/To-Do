@@ -15,6 +15,7 @@ function add(){
     
   }
   todo.value="";
+  saveTask();
 }
 
 show.addEventListener("click", function(e){
@@ -22,5 +23,15 @@ show.addEventListener("click", function(e){
     e.target.classList.toggle("checked");
   }else if(e.target.tagName ==="SPAN"){
     e.target.parentElement.remove();
+    saveTask();
   }
 }, false);
+
+function saveTask(){
+  localStorage.setItem("data", show.innerHTML);
+}
+
+function showTask(){
+  show.innerHTML = localStorage.getItem("data");
+}
+showTask();
